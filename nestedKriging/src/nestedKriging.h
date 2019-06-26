@@ -25,6 +25,8 @@
 #include "leaveOneOut.h"
 #include "kriging.h"
 
+#include <array>
+
 namespace nestedKrig {
 
 //======================================================= Personal constants and types

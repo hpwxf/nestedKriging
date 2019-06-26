@@ -15,6 +15,7 @@
 //   Covariance covariance(covParams);
 //   Points pointsX(matrixX, covParams)
 //   covariance.fillCorrMatrix(K, pointsX); // fill K with correlations matrix of X
+//   K calcul exploitant symétrique, stockage complet
 
 #include <cmath> // exp, pow, sqrt...
 #include "common.h"

@@ -7,6 +7,7 @@
 // Classes:
 // ChosenSolver, KrigingPredictor , ChosenPredictor, ChosenLOOKrigingPredictor
 //===============================================================================
+// a mettre aussi dans la première version
 
 #include "common.h"
 #include "leaveOneOut.h"
