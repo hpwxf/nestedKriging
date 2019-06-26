@@ -1,13 +1,36 @@
+#R_HOME=$(dirname $(readlink $(whence -c R)))
 
 
 ## Use the R_HOME indirection to support installations of multiple R version
 PKG_LIBS = `$(R_HOME)/bin/Rscript -e "Rcpp:::LdFlags()"`
 
-PKG_LIBS =  $(SHLIB_OPENMP_CFLAGS) $(SHLIB_OPENMP_CXXFLAGS) $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
-PKG_CFLAGS = $(SHLIB_OPENMP_CFLAGS)
-PKG_CXXFLAGS = $(SHLIB_OPENMP_CXXFLAGS) #-ffast-math -march=native -mfma -Ofast
+PKG_LIBS = -L/usr/local/opt/llvm/lib $(SHLIB_OPENMP_CFLAGS) $(SHLIB_OPENMP_CXXFLAGS) $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
+PKG_CFLAGS = -I/usr/local/opt/llvm/include $(SHLIB_OPENMP_CFLAGS)
+PKG_CXXFLAGS = -I/usr/local/opt/llvm/include $(SHLIB_OPENMP_CXXFLAGS) #-ffast-math -march=native -mfma -Ofast
+#-I/usr/local/opt/llvm/include -L/usr/local/opt/llvm/lib
+#PKG_LIBS =  $(SHLIB_OPENMP_CFLAGS) $(SHLIB_OPENMP_CXXFLAGS) $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
+#PKG_CFLAGS = $(SHLIB_OPENMP_CFLAGS)
+#PKG_CXXFLAGS = $(SHLIB_OPENMP_CXXFLAGS) #-ffast-math -march=native -mfma -Ofast
 
 CXX_STD = CXX11
 ## *Both* the above must be *uncommented* for release
 #PKG_CFLAGS = -Wall -pedantic $(SHLIB_OPENMP_CFLAGS)
 ## `#' out previous line for release (but not without uncommenting openMP)
+
+
+# configuration du compilateur dans /Library/Frameworks/R.framework/Versions/3.5/Resources/etc/Makeconf
+
+# see https://stackoverflow.com/questions/43826436/how-to-change-compiler-version-to-build-an-rcpp-based-package
+#CXX=/usr/local/opt/llvm/bin/clang++
+
+PKG_CXX = aclang++
+PKG_CXX98 = aclang++
+PKG_CXX11 = aclang++
+PKG_CXX14 = aclang++
+PKG_CXX17 = aclang++
+PKG_OBJCXX = aclang++
+PKG_CXX1X = aclang++
+
+
+#PKG_CXXFLAGS=--toto
+
